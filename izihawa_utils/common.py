@@ -1,9 +1,5 @@
 import collections
-from typing import (
-    Dict,
-    List,
-    Tuple,
-)
+from typing import Dict
 
 
 def is_not_none(v):
@@ -14,13 +10,13 @@ def is_essential(v):
     return bool(v)
 
 
-def filter_none(l, predicate=is_not_none):
-    if isinstance(l, dict):
-        return {k: v for k, v in l.items() if predicate(v)}
-    elif isinstance(l, collections.Iterable):
-        return list(filter(lambda x: x is not None, l))
+def filter_none(el, predicate=is_not_none):
+    if isinstance(el, Dict):
+        return {k: v for k, v in el.items() if predicate(v)}
+    elif isinstance(el, collections.Iterable):
+        return list(filter(predicate, el))
     else:
-        return l
+        return el
 
 
 def is_iterable(i):
@@ -30,15 +26,6 @@ def is_iterable(i):
         return False
     else:
         return True
-
-
-def noneless(d, predicate=is_not_none):
-    if isinstance(d, Dict):
-        return {i: noneless(v) for i, v in d.items() if predicate(v)}
-    elif isinstance(d, (Tuple, List)):
-        return list(map(noneless, d))
-    else:
-        return d
 
 
 def paginator(func, page_size, *args, **kwargs):
