@@ -45,6 +45,9 @@ class BaseError(Exception):
     def __str__(self):
         return repr(self)
 
+    def add(self, key, value):
+        self.info[key] = value
+
 
 class MissingFileError(BaseError, FileNotFoundError):
     def __init__(self, file_path=''):
