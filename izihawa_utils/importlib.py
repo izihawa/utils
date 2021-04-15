@@ -13,3 +13,11 @@ def import_object(name):
 
 def instantiate_object(descriptor):
     return import_object(descriptor['class'])(**descriptor.get('kwargs', {}))
+
+
+def class_fullname(o):
+    klass = o.__class__
+    module = klass.__module__
+    if module == 'builtins':
+        return klass.__qualname__
+    return module + '.' + klass.__qualname__
