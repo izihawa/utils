@@ -50,7 +50,7 @@ def flatten(d, sep='.', prefix=''):
 
 def unflatten(flat_dict, sep='.'):
     unflatted_dict = {}
-    for key, value in flat_dict.iteritems():
+    for key, value in flat_dict.items():
         parts = key.split(sep)
         d = unflatted_dict
         for part in parts[:-1]:
